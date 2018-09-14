@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Indonesia</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/navbar-top-fixed.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Indonesia</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            </div>
+        </nav>
+
+        <main role="main" class="call-to-action">
+            <div class="container">
+                <div style="width: 100%; padding-bottom: 54.16%; position: relative;">
+                    <svg style="width: 100%; height: 100%; position: absolute;">
+                        <defs>
+                            <radialGradient id="light" cx="720" cy="390" r="720" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" style="stop-color:#a5cbff; stop-opacity:0.1"></stop>
+                                <stop offset="100%" style="stop-color:#a5cbff; stop-opacity:0"></stop>
+                            </radialGradient>
+                        </defs>
+                        <g transform="scale(0.5 0.5)">
+                            <rect width="1440" height="780" fill="url(#light)"></rect>
+                        </g>
+                    </svg>
+                </div>
+                <!-- <div class="call-to-action-buttons">
+                    <a href="/forum/" class="btn btn-lg btn-primary"> <span class="fa fa-comments"></span> Discussion</a>
+                    <a href="/downloads" class="btn btn-lg btn-primary float-right"><span class="fa fa-download"></span> Get it now</a>
+                </div> -->
+            </div>
+        </main>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+        <script src="../../assets/js/vendor/popper.min.js"></script> -->
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <script src="bower_components/d3/d3.min.js"></script>
+        <script>
+            var rescale_svg = function() {
+                var width = parseInt(d3.select('svg').style('width'), 10);
+                d3.select('svg g').attr('transform', 'scale(' + width / 1440 + ')');
+            };
+            rescale_svg();
+            d3.select(window).on('resize', rescale_svg);
+        
+            var width = 1440;
+            var height = 780;
+            d3.csv('https://fer.dika.web.id/petadotindo/indo.csv', function(d) {
+                return {x: +d.x, y: +d.y};
+            }, function(data) {
+                d3.select('svg g')
+                .selectAll('circle')
+                .data(data)
+                .enter()
+                .append('circle')
+                .attr({
+                    cx: width / 2,
+                    cy: 0,
+                    r: 0
+                })
+                .transition()
+                .duration(function() {
+                    return Math.random() * 1300 + 700;
+                })
+                .delay(function() {
+                    return Math.random() * 5000;
+                })
+                .attr({
+                    //   cx: function(d) {return d.x * 10 + 20;},
+                    //   cy: function(d) {return d.y * 10 + 50;},
+                    cx: function(d) {
+                        return d.x;
+                    },
+                    cy: function(d) {
+                        return d.y;
+                    },
+                    r: 4,
+                    fill: function() { 
+                        return 'hsl(346,100%,' + (Math.random() * 20 + 40) +'%)';
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

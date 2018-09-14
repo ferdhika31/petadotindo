@@ -1,0 +1,10 @@
+.call-to-action {
+    background: #231f20;
+    color: #fff;
+}
+
+.call-to-action-buttons {
+    position: absolute;
+    top: 78%;
+    width: 20%;
+}
