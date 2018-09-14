@@ -85,7 +85,7 @@
         
             var width = 1440;
             var height = 780;
-            d3.csv('https://fer.dika.web.id/petadotindo/indo.csv', function(d) {
+            d3.csv('indo.csv', function(d) {
                 return {x: +d.x, y: +d.y};
             }, function(data) {
                 d3.select('svg g')
@@ -116,7 +116,7 @@
                     },
                     r: 4,
                     fill: function() { 
-                        return 'hsl(346,100%,' + (Math.random() * 20 + 40) +'%)';
+                        return 'hsl(203,100%,' + (Math.random() * 20 + 40) +'%)';
                     }
                 });
             });
